@@ -3,7 +3,7 @@ name: Docker Build for Different Environments
 on:
   push:
     branches:
-      - development
+      - dev
       - qa
       - main  # Assuming 'main' is used for prod
 
@@ -35,7 +35,7 @@ jobs:
     - name: Set Docker image tag based on branch
       id: set_tag
       run: |
-        if [[ $GITHUB_REF == 'refs/heads/development' ]]; then
+        if [[ $GITHUB_REF == 'refs/heads/dev' ]]; then
           echo "IMAGE_TAG=development" >> $GITHUB_ENV
         elif [[ $GITHUB_REF == 'refs/heads/qa' ]]; then
           echo "IMAGE_TAG=qa" >> $GITHUB_ENV
