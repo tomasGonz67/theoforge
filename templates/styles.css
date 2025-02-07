@@ -1,8 +1,8 @@
 /* styles.css */
 :root {
-    --primary-color: #f4a261; /* Warm and inviting color */
-    --secondary-color: #264653; /* Contrasting dark color */
-    --text-color: #2a9d8f;
+    --primary-color: #f4a261; /* Slightly adjusted warm tone */
+    --secondary-color: #1e3a4c; /* A darker, accessible blue */
+    --text-color: #268b7f; /* White text for better contrast */  
     --golden-ratio: 1.618;
   }
   
@@ -17,6 +17,7 @@
     background-color: var(--secondary-color);
     color: var(--text-color);
     display: flex;
+     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -79,4 +80,15 @@
   button:hover {
     background-color: var(--text-color);
   }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+  }
   
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
