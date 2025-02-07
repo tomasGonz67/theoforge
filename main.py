@@ -20,6 +20,6 @@ def get_environment():
 @app.get("/", include_in_schema=False)
 def homepage(request: Request):
     return templates.TemplateResponse(
-        "index.html","styles.css",
+        "index.html",
         {"request": request, "environment": get_environment()}
     )
