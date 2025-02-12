@@ -14,9 +14,60 @@
     </div>
   </div>
 
+  <h1>Contact Us</h1>
+
+  <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <button type="submit">Submit</button>
+  </form>
+
+  <p id="response-message"></p>
+
 
 </body>
 <footer>
     <p>2025 Theoforge: {{ environment }}</p>
 </footer>
+
+
+<script>
+  // Handle form submission via JavaScript
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      // Data to send to the server
+      const formData = {
+          name: name,
+          email: email
+      };
+
+      // Send the form data to the backend via POST request
+      fetch('https://api.is373project.me/contact', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData) // Convert the form data to JSON
+      })
+      .then(response => response.json())
+      .then(data => {
+          // Handle successful response
+          document.getElementById('response-message').textContent = 'Contact form submitted successfully!';
+          console.log(data);
+      })
+      .catch(error => {
+          // Handle error
+          document.getElementById('response-message').textContent = 'There was an error submitting the form.';
+          console.error(error);
+      });
+  });
+</script>
 </html>
