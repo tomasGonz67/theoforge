@@ -52,5 +52,41 @@ request.onload = function () {
 
 request.send()
 
+const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the form from refreshing the page
+
+    // Get the values from the form
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    try {
+        // Send a POST request to the FastAPI endpoint
+        const response = await fetch('https://dev.theoforge.com/API/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
+        });
+
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Parse the JSON response
+        const data = await response.json();
+
+        // Display the response (access token)
+        console.log(data);
+        alert(`Access Token: ${data.name}`);
+
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    }
+  });
+
 </script>
 </html>
